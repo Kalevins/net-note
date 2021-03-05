@@ -1,2 +1,5 @@
 # NetNote
- Aplicación movil para amarte
+ Aplicación movil para
+ 
+ Kevinsito
+ 

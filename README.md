@@ -1,5 +1,4 @@
 # NetNote
- Aplicación movil para
+Aplicación movil para
  
- Kevinsito
- 
+Main Branch

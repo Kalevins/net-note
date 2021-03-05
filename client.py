@@ -27,3 +27,5 @@ while True:
 	# Lee el frame de la cámara y lo envía al servidor
 	frame = vs.read()
 	sender.send_image(rpiName, frame)
+	print("Kevin te amo")
+	

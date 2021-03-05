@@ -1,2 +1,2 @@
 # NetNote
- Aplicación movil para
+ Aplicación movil para amarte

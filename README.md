@@ -1,4 +1,2 @@
 # NetNote
-Aplicación movil para
- 
-Main Branch
+ Aplicación movil desde la branch de jorgito

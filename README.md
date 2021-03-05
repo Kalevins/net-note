@@ -1,5 +1,4 @@
 # NetNote
- Aplicación movil para
- 
- Kevinsito
+ Aplicación movil desde la branch de jorgito
+
  

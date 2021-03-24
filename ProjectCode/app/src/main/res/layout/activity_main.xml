@@ -33,45 +33,47 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Saltar_btn"
         android:layout_width="321dp"
         android:layout_height="58dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/btn"
         android:text="Saltar"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Titulo" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Iniciar_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:background="@drawable/btn"
         android:text="Iniciar Sesión"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintEnd_toStartOf="@+id/Registrarse_btn"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.594"
+        app:layout_constraintTop_toBottomOf="@+id/Saltar_btn"
+        app:layout_constraintVertical_bias="0.387"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Registrarse_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/btn"
         android:text="Registrarse"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.594"
+        app:layout_constraintTop_toBottomOf="@+id/Saltar_btn"
+        app:layout_constraintVertical_bias="0.021"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

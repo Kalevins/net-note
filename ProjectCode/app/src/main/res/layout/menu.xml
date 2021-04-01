@@ -1,0 +1,26 @@
+<menu android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/Todas_las_notas"
+            android:icon="@drawable/notas"
+            android:title="@string/item1"
+            android:checked="true" />
+        <item
+            android:id="@+id/favoritos"
+            android:icon="@drawable/fav"
+            android:title="@string/item2" />
+        <item
+            android:id="@+id/compartidos"
+            android:icon="@drawable/compartido"
+            android:title="@string/item3" />
+        <item
+            android:id="@+id/papelera"
+            android:icon="@drawable/papelera"
+            android:title="@string/item4"/>
+    </group>
+
+    </menu>

@@ -11,14 +11,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val initSesion: Button = findViewById(R.id.Iniciar_btn)
+
+
+        initSesion.setOnClickListener(){
+        setContentView(R.layout.activity_iniciar_sesion)
+        }
+        val regist: Button = findViewById(R.id.Registrarse_btn)
+
+        regist.setOnClickListener(){
+            setContentView(R.layout.activity_registrarse)
+        }
+
+        val saltar: Button = findViewById(R.id.Saltar_btn)
+
+        saltar.setOnClickListener(){
+            setContentView(R.layout.activity_informacion)
+        }
+
 
 
     }
 
 
-    //fun onClick(view: View){
-      //  val inicio_sesion = findViewById<Button>(R.id.Iniciar_btn)
-
-
-    }
 }

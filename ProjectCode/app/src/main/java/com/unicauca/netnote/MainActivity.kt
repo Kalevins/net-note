@@ -23,6 +23,14 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_registrarse)
         }
 
+        val saltar: Button = findViewById(R.id.Saltar_btn)
+
+        saltar.setOnClickListener(){
+            setContentView(R.layout.activity_informacion)
+        }
+
+
+
     }
 
 

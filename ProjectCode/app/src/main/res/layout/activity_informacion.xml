@@ -129,6 +129,7 @@
         app:layout_constraintTop_toBottomOf="@id/info_editar_text" />
 
     <Button
+        android:id="@+id/bienvenida_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"

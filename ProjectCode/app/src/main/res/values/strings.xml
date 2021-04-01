@@ -2,5 +2,9 @@
     <string name="app_name">NetNote</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bienvenido" >¡Bienvenido!</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="item1">Todas las notas</string>
+    <string name="item2">Favoritos</string>
+    <string name="item3">Compartidos conmigo</string>
+    <string name="item4">Papelera</string>
 </resources>

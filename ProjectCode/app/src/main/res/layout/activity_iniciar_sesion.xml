@@ -29,7 +29,8 @@
         app:layout_constraintBottom_toTopOf="@+id/iniciar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Constraseña"/>
 
     <Button
         android:id="@+id/iniciar"
@@ -64,7 +65,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Texto"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:hint="Correo electronico"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

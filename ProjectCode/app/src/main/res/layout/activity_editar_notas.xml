@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Editar_notas">
+
+    <EditText
+        android:id="@+id/Titulo_notas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Título"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Contenido_notas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:hint="Comienza agregando imagenes, texto o audio con el botón  de abajo"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/notas_screen"
+        app:layout_constraintTop_toBottomOf="@id/Titulo_notas" />
+
+    <FrameLayout
+        android:id="@+id/notas_screen"
+        android:layout_width="410dp"
+        android:layout_height="124dp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="480dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text="Editar" />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

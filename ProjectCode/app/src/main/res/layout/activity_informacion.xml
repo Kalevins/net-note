@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".informacion">
+
+
+    <TextView
+        android:id="@+id/Bienvenido_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/bienvenido"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/informacion_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Netnote te ayuda a organizar tus notas de clase, reuniones y conferencias, añadiendo nuevas caracteristicas:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/Bienvenido_text"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@id/Bienvenido_text"
+        app:layout_constraintTop_toBottomOf="@id/Bienvenido_text" />
+
+
+    <ImageView
+            android:id="@+id/imagen_audio"
+            android:layout_width="64dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/audio"
+            app:layout_constraintEnd_toStartOf="@id/info_audio_text"
+            app:layout_constraintTop_toTopOf="@id/info_audio_text"
+            app:layout_constraintBottom_toBottomOf="@id/info_audio_text"
+            app:layout_constraintStart_toStartOf="@id/informacion_text"
+            android:layout_marginEnd="15dp"
+            />
+
+    <TextView
+        android:id="@+id/info_audio_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif"
+        android:text="Graba el audio encima de tus notas escritas."
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/informacion_text"
+        app:layout_constraintStart_toEndOf="@id/imagen_audio"
+        app:layout_constraintTop_toBottomOf="@id/informacion_text" />
+
+    <ImageView
+        android:id="@+id/imagen_camara"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/imagen_audio"
+        app:layout_constraintStart_toStartOf="@+id/imagen_audio"
+        app:layout_constraintEnd_toStartOf="@id/info_camara_text"
+        app:srcCompat="@drawable/camara" />
+
+    <TextView
+        android:id="@+id/info_camara_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:text="Graba el audio encima de tus notas escritas."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/imagen_camara"
+        app:layout_constraintStart_toStartOf="@+id/info_audio_text"
+        app:layout_constraintTop_toBottomOf="@id/info_audio_text" />
+
+    <ImageView
+        android:id="@+id/imagen_editar"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/editar"
+        app:layout_constraintTop_toBottomOf="@id/imagen_camara"
+        app:layout_constraintStart_toStartOf="@+id/imagen_camara"
+        app:layout_constraintEnd_toStartOf="@id/info_editar_text"
+        android:layout_marginEnd="15dp"
+        />
+
+    <TextView
+        android:id="@+id/info_editar_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:text="Graba el audio encima de tus notas escritas."
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/info_camara_text"
+        app:layout_constraintStart_toEndOf="@id/imagen_editar"
+        app:layout_constraintTop_toBottomOf="@id/info_camara_text" />
+
+    <ImageView
+        android:id="@+id/imagen_nube"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/nube"
+        app:layout_constraintTop_toBottomOf="@id/imagen_editar"
+        app:layout_constraintStart_toStartOf="@+id/imagen_editar"
+        app:layout_constraintEnd_toStartOf="@id/info_nube_text"
+        android:layout_marginEnd="15dp"
+        />
+
+    <TextView
+        android:id="@+id/info_nube_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:text="Graba el audio encima de tus notas escritas."
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/info_editar_text"
+        app:layout_constraintStart_toEndOf="@id/imagen_nube"
+        app:layout_constraintTop_toBottomOf="@id/info_editar_text" />
+
+    <Button
+        android:id="@+id/bienvenida_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="¡Vamos!"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@id/info_nube_text"
+        app:layout_constraintStart_toStartOf="@id/imagen_nube"
+        app:layout_constraintTop_toBottomOf="@id/info_nube_text" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

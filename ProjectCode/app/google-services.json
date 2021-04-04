@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "213613934678",
+    "firebase_url": "https://netnote-68c7d-default-rtdb.firebaseio.com",
+    "project_id": "netnote-68c7d",
+    "storage_bucket": "netnote-68c7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213613934678:android:e8bdca18fa1f5331e0a3f7",
+        "android_client_info": {
+          "package_name": "com.example.myphotostock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213613934678-2kdgdvaiemegbqgho752c0vmg9m8a30c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPXnfjCg8MG5mXdM7DJ-qvtyMN4so6piA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213613934678-2kdgdvaiemegbqgho752c0vmg9m8a30c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213613934678:android:32061cf1d292ee8fe0a3f7",
+        "android_client_info": {
+          "package_name": "com.unicauca.netnote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213613934678-2kdgdvaiemegbqgho752c0vmg9m8a30c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPXnfjCg8MG5mXdM7DJ-qvtyMN4so6piA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213613934678-2kdgdvaiemegbqgho752c0vmg9m8a30c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Adapter for the [RecyclerView] in [MainActivity]. Displays [Affirmation] data object.
  */
+/*
 class ItemAdapter(
         private val context: Context
         //private val dataset: List<Affirmation>
@@ -34,7 +35,6 @@ class ItemAdapter(
           //      .inflate(R.layout.list_item, parent, false)
 
         //return ItemViewHolder(adapterLayout)
-
     }
 
     /**
@@ -48,4 +48,4 @@ class ItemAdapter(
     override fun getItemCount(): Int {
         return 0
     }
-        }
+}*/

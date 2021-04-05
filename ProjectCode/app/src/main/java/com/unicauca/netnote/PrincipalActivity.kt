@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 class PrincipalActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var LogOut: FloatingActionButton
+    private lateinit var logOut: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +21,9 @@ class PrincipalActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        LogOut = findViewById(R.id.floating_action_button)
+        logOut = findViewById(R.id.floating_action_button)
 
-        LogOut.setOnClickListener {
+        logOut.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             auth.signOut()
         }

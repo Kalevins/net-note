@@ -1,37 +1,52 @@
 package com.unicauca.netnote
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var refDatabase: DatabaseReference
+    private lateinit var loginButton: Button
+    private lateinit var registerButton: Button
+    private lateinit var skipButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        this.setContentView(R.layout.activity_main)
 
-        val initSesion: Button = findViewById(R.id.Iniciar_btn)
+        //Auth
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.currentUser?.uid
 
+        //Database
+        val firebase: FirebaseDatabase = FirebaseDatabase.getInstance()
+        refDatabase = firebase.getReference("$userID")
 
-        initSesion.setOnClickListener(){
-        setContentView(R.layout.activity_iniciar_sesion)
-        }
-        val regist: Button = findViewById(R.id.Registrarse_btn)
-
-        regist.setOnClickListener(){
-            setContentView(R.layout.activity_registrarse)
-        }
-
-        val saltar: Button = findViewById(R.id.Saltar_btn)
-
-        saltar.setOnClickListener(){
-            setContentView(R.layout.activity_informacion)
+        auth.addAuthStateListener {
+            if(auth.currentUser != null){
+                startActivity(Intent(this, PrincipalActivity::class.java))
+            }
         }
 
+        loginButton = findViewById(R.id.main_iniciar_button)
+        registerButton = findViewById(R.id.main_registrarse_button)
+        skipButton = findViewById(R.id.main_saltar_button)
 
+        loginButton.setOnClickListener {
+            startActivity(Intent(this, IniciarSesionActivity::class.java))
+        }
 
+        registerButton.setOnClickListener {
+            startActivity(Intent(this, RegistrarseActivity::class.java))
+        }
+
+        skipButton.setOnClickListener {
+            startActivity(Intent(this, InformacionActivity::class.java))
+        }
     }
-
-
 }

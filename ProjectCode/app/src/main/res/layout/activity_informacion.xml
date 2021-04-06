@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".informacion">
+    tools:context=".InformacionActivity">
 
 
     <TextView
-        android:id="@+id/Bienvenido_text"
+        android:id="@+id/informacion_bienvenido_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        android:text="@string/bienvenido"
+        android:text="@string/informacion_bienvenido_text"
         android:textColor="#FF5722"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -28,12 +28,12 @@
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="Netnote te ayuda a organizar tus notas de clase, reuniones y conferencias, añadiendo nuevas caracteristicas:"
+        android:text="@string/informacion_text"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/Bienvenido_text"
+        app:layout_constraintEnd_toEndOf="@id/informacion_bienvenido_text"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@id/Bienvenido_text"
-        app:layout_constraintTop_toBottomOf="@id/Bienvenido_text" />
+        app:layout_constraintStart_toStartOf="@id/informacion_bienvenido_text"
+        app:layout_constraintTop_toBottomOf="@id/informacion_bienvenido_text" />
 
 
     <ImageView
@@ -129,12 +129,12 @@
         app:layout_constraintTop_toBottomOf="@id/info_editar_text" />
 
     <Button
-        android:id="@+id/bienvenida_button"
+        android:id="@+id/informacion_bienvenida_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-medium"
-        android:text="¡Vamos!"
+        android:text="@string/informacion_bienvenida_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@id/info_nube_text"
         app:layout_constraintStart_toStartOf="@id/imagen_nube"

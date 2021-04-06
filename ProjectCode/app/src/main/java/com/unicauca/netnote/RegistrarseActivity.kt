@@ -1,9 +1,7 @@
 package com.unicauca.netnote
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -11,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 
 
 class RegistrarseActivity : AppCompatActivity() {
@@ -62,8 +59,8 @@ class RegistrarseActivity : AppCompatActivity() {
         }
 
         auth.createUserWithEmailAndPassword(
-            emailEditText.text.toString(),
-            passwordEditText.text.toString()
+                emailEditText.text.toString(),
+                passwordEditText.text.toString()
         )
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -72,12 +69,13 @@ class RegistrarseActivity : AppCompatActivity() {
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast.makeText(baseContext, resources.getString(R.string.acierto_registrarse), Toast.LENGTH_SHORT).show()
-                                //Agregar nombre y foto
+                                //Agregar nombre
                                 val profileUpdates = UserProfileChangeRequest.Builder()
-                                    .setDisplayName(nameEditText.toString())
-                                    .setPhotoUri(Uri.parse("https://www.flaticon.com/svg/vstatic/svg/1077/1077012.svg?token=exp=1617572628~hmac=7e65ad7926dbda0c0e9141eb3ac6331a"))
+                                    .setDisplayName(nameEditText.text.toString())
+                                    //.setPhotoUri(Uri.parse("https://www.flaticon.com/svg/vstatic/svg/1077/1077012.svg?token=exp=1617572628~hmac=7e65ad7926dbda0c0e9141eb3ac6331a"))
                                     .build()
                                 user.updateProfile(profileUpdates)
+
                                 auth.signOut()
                                 startActivity(Intent(this, IniciarSesionActivity::class.java))
                                 finish()
@@ -87,8 +85,8 @@ class RegistrarseActivity : AppCompatActivity() {
                 } else {
 
                     Toast.makeText(
-                        baseContext, resources.getString(R.string.error_registrarse),
-                        Toast.LENGTH_SHORT
+                            baseContext, resources.getString(R.string.error_registrarse),
+                            Toast.LENGTH_SHORT
                     ).show()
                 }
             }

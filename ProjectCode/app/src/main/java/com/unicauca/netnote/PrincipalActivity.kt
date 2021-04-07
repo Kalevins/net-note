@@ -2,9 +2,6 @@ package com.unicauca.netnote
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.View
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -18,11 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.nav_header_main.*
-import android.view.LayoutInflater
-import android.widget.ImageView
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -40,7 +32,7 @@ class PrincipalActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         toolbar = findViewById(R.id.toolbar)
-        fab = findViewById(R.id.fab)
+        fab = findViewById(R.id.edit_buttom)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 

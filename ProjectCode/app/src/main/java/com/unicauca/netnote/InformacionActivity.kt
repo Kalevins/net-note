@@ -8,8 +8,6 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class InformacionActivity : AppCompatActivity() {
 
@@ -24,7 +22,7 @@ class InformacionActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        loginButton.setOnClickListener(){
+        loginButton.setOnClickListener {
             auth.signInAnonymously()
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {

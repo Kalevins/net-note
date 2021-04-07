@@ -45,5 +45,21 @@
     <string name="acierto_registrarse">Registro satisfactorio</string>
 
     <string name="sample_data">Sample data</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Notas</string>
+    <string name="menu_share">Compartidos conmigo</string>
+    <string name="menu_logout">Cerrar sesión</string>
+    <string name="menu_paper_bin">Papelera</string>
+
+    <!-- Fragments -->
+    <string name="fragment_logout_button">Cerrar sesión</string>
 
 </resources>

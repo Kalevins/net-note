@@ -1,0 +1,33 @@
+package com.unicauca.netnote
+
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_principal.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.notas_lista.*
+import models.Document
+
+class NotasListaActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?){
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_home)
+        Log.d("Info","************************Esta creando el listDocument**********************")
+        setupRecyclerView()
+
+    }
+
+    private fun setupRecyclerView(){
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val listDocuments = listOf(Document("Teoria Electromagnetica", 2, "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Micro.png", "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Imagen.png", "Esto es teoria de campos electromagneticos" ),
+            Document("Aplicaciones Móviles", 2, "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Micro.png", "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Imagen.png", "Esto es desarrollo de aplicaciones moviles" ),
+            Document("Medios de transmisión", 8, "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Micro.png", "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Imagen.png", "Esto es medios de transmision" ))
+        Log.d("Info","*******************Esta creando el listDocument")
+        recyclerView.adapter = RecyclerAdapter(this, listDocuments)
+
+    }
+}

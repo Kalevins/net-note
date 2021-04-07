@@ -28,7 +28,8 @@
         <activity android:name=".InformacionActivity" />
         <activity android:name=".RegistrarseActivity" />
         <activity android:name=".IniciarSesionActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".NotasListaActivity"/>
     </application>
 
 </manifest>

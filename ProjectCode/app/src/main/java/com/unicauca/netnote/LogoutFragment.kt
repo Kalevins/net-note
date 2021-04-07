@@ -31,4 +31,5 @@ class LogoutFragment : Fragment() {
             startActivity(Intent(getActivity(), MainActivity::class.java))
         }
     }
+
 }

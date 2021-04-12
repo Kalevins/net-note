@@ -1,13 +1,19 @@
 package com.unicauca.netnote
 
 import android.app.Activity
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.View.inflate
+import android.widget.SearchView
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.content.res.ComplexColorCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +35,8 @@ class HomeFragment : Fragment() {
     }
 
 
+
+
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
 
@@ -42,6 +50,9 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = RecyclerAdapter(itemView.context, listDocuments)
 
     }
+
+
+
 
 
 }

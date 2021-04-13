@@ -9,9 +9,8 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="buscar"
         android:contentDescription="buscar"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="ifRoom"
         app:actionViewClass="android.widget.SearchView" />
-
 
 
 </menu>

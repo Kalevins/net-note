@@ -17,6 +17,7 @@ import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.unicauca.netnote.databinding.ActivityEditarNotasBinding.inflate
 import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
 
@@ -30,11 +31,16 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+
         return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
 
+    private fun Intent(homeFragment: HomeFragment, java: Class<PrincipalActivity>) {
 
+
+
+    }
 
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
@@ -51,8 +57,11 @@ class HomeFragment : Fragment() {
 
     }
 
+    
 
 
 
 
 }
+
+

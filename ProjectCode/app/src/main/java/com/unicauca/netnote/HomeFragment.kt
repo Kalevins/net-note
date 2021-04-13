@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
             Document("Aplicaciones Móviles", 2, "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Micro.png", "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Imagen.png", "Esto es desarrollo de aplicaciones moviles" ),
             Document("Medios de transmisión", 8, "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Micro.png", "https://raw.githubusercontent.com/kevinmuz55/NetNote/Kevin/Imagenes/Imagen.png", "Esto es medios de transmision" )
         )
-        Log.d("Info","*******************Esta creando el listDocument")
+        //Log.d("Info","*******************Esta creando el listDocument")
         recyclerView.adapter = RecyclerAdapter(itemView.context, listDocuments)
 
     }

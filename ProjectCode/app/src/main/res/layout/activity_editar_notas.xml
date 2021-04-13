@@ -32,7 +32,7 @@
     <FrameLayout
         android:id="@+id/notas_screen"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:layout_height="500dp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

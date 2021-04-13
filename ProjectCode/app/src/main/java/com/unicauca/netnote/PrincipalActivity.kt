@@ -4,9 +4,6 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.View
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -47,7 +44,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         toolbar = findViewById(R.id.toolbar)
-        fab = findViewById(R.id.fab)
+        fab = findViewById(R.id.edit_buttom)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 

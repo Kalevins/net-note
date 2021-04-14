@@ -1,17 +1,24 @@
 package com.unicauca.netnote
 
 import android.app.Activity
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.View.inflate
+import android.widget.SearchView
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.content.res.ComplexColorCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.unicauca.netnote.databinding.ActivityEditarNotasBinding.inflate
 import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
 
@@ -25,7 +32,14 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
     ): View? {
         // Inflate the layout for this fragment
 
+
         return inflater.inflate(R.layout.fragment_home, container, false)
+
+    }
+
+    private fun Intent(homeFragment: HomeFragment, java: Class<PrincipalActivity>) {
+
+
 
     }
 
@@ -50,6 +64,4 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         intent.putExtra("Titulo", title)
         startActivity(intent)
     }
-
-
 }

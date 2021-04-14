@@ -18,11 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/Contenido_notas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:hint="Comienza agregando imagenes, texto o audio con el botón  de abajo"
+        android:hint="Comienza agregando imagenes, texto o audio con el menú de abajo"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/notas_screen"
@@ -32,19 +32,21 @@
 
     <FrameLayout
         android:id="@+id/notas_screen"
-        android:layout_width="410dp"
-        android:layout_height="124dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="480dp">
 
-        <Button
+        <fragment
+            android:id="@+id/edition_toolbar"
+            android:name="com.unicauca.netnote.EditarFragment"
+            android:label="@string/menu_home"
+            tools:layout="@layout/fragment_editar"
             android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:text="Editar" />
-
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 

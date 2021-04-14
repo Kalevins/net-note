@@ -9,7 +9,6 @@ import base.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.documents_row.view.*
 import models.Document
-import java.lang.IllegalArgumentException
 
 class RecyclerAdapter ( private val context: Context,
                         val listDocuments:List<Document>,

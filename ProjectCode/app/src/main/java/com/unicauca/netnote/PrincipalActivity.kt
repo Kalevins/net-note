@@ -21,6 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header_main.*
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SearchView

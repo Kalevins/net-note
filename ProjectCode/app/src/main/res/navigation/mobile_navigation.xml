@@ -28,4 +28,10 @@
         android:name="com.unicauca.netnote.LogoutFragment"
         android:label="@string/menu_logout"
         tools:layout="@layout/fragment_logout" />
+
+    <fragment
+        android:id="@+id/nav_creditos"
+        android:name="com.unicauca.netnote.fragment_creditos"
+        android:label="@string/creditos"
+        tools:layout="@layout/fragment_creditos" />
 </navigation>

@@ -21,6 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header_main.*
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SearchView
@@ -73,7 +74,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout
+                R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout, R.id.nav_creditos
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

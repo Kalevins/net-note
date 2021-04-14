@@ -61,5 +61,6 @@
 
     <!-- Fragments -->
     <string name="fragment_logout_button">Cerrar sesión</string>
+    <string name="creditos">Créditos</string>
 
 </resources>

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_principal.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.notas_lista.*
+//import kotlinx.android.synthetic.main.notas_lista.*
 import models.Document
 
 class NotasListaActivity : AppCompatActivity(), RecyclerAdapter.onDocumentClickListener {

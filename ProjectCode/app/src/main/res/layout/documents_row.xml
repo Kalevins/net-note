@@ -11,41 +11,39 @@
         android:id="@+id/image_document"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginEnd="300dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_audio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@id/image_audio"
+        app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_audio"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="348dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="4dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/image_document"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_scan"
         android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_audio"
+        app:layout_constraintEnd_toStartOf="@+id/image_audio"
+        app:layout_constraintTop_toTopOf="@id/image_audio"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txt_title_document"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/image_document"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,12 +57,13 @@
         android:id="@+id/number_Chapters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.356" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

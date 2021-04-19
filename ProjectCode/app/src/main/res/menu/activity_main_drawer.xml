@@ -17,8 +17,13 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_paper_bin" />
         <item
+            android:id="@+id/nav_creditos"
+            android:icon="@drawable/ic_baseline_priority_high_24"
+            android:title="@string/creditos"/>
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_logout" />
+
     </group>
 </menu>

@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b1293e-ce51-439b-9450-abdfe986f102" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/res/menu/top_bar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/java/com/unicauca/netnote/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/java/com/unicauca/netnote/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/java/com/unicauca/netnote/NotasListaActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/java/com/unicauca/netnote/PrincipalActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/java/com/unicauca/netnote/PrincipalActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/activity_principal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/activity_principal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/app_bar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/app_bar_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectCode/app/src/main/res/layout/notas_lista.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

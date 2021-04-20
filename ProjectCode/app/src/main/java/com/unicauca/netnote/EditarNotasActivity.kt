@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
 import com.google.android.material.appbar.AppBarLayout
@@ -29,7 +30,7 @@ class EditarNotasActivity : AppCompatActivity() {
         setContentView(R.layout.activity_editar_notas)
 
         val titleDocument = intent.getStringExtra("Titulo")
-        Titulodelasnotas.hint = titleDocument
+        Titulo_notas.hint = titleDocument
       
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
@@ -79,11 +80,9 @@ class EditarNotasActivity : AppCompatActivity() {
 
     private fun addTitle(view: View){
 
-        val editText = findViewById<EditText>(R.id.Titulodelasnotas)
+        val editText = findViewById<EditText>(R.id.Titulo_notas)
         val titulo: String
         val documento: Document
-
-
 
         titulo = editText.text.toString()
 

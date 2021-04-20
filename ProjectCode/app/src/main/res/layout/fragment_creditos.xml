@@ -8,7 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="La aplicación permite la digitalización de textos de una manera más ordenada, con el fin de poder tener información importante de cualquier índole en tu celular con imágenes en tiempo real,"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

@@ -17,6 +17,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -35,6 +38,7 @@ class EditarFragment : Fragment() {
     lateinit var imageView: ImageView
     lateinit var currentPhotoPath: String
     lateinit var storageReference: StorageReference
+    lateinit var auth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -50,7 +54,6 @@ class EditarFragment : Fragment() {
         cam_buttom = view.findViewById(R.id.cam_image)
         gallery_buttom = view.findViewById(R.id.gallery_image)
         mic_buttom = view.findViewById(R.id.mic_image)
-        imageView =  view.findViewById(R.id.Contenido_notas_Image)
 
         storageReference = FirebaseStorage.getInstance().reference
 
@@ -103,7 +106,6 @@ class EditarFragment : Fragment() {
                 val contentUri = Uri.fromFile(File(currentPhotoPath));
                 val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
                 val imageFileName = "JPEG_" + timeStamp + ".jpg"
-                imageView.setImageURI(Uri.parse(currentPhotoPath))
                 uploadImageToFirebase(imageFileName, contentUri)
             }
         }
@@ -112,22 +114,28 @@ class EditarFragment : Fragment() {
                 val contentUri = data!!.data
                 val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
                 val imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri)
-                imageView.setImageURI(contentUri)
                 uploadImageToFirebase(imageFileName, contentUri)
             }
         }
     }
 
     private fun uploadImageToFirebase(name: String, contentUri: Uri?) {
+        val database = Firebase.database
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.currentUser?.uid
+        val imageName = name.substring(0,20)
+        val myRef = database.getReference("/users/$userID/imageURI/$imageName/")
         val image = storageReference.child("pictures/$name")
         image.putFile(contentUri!!).addOnSuccessListener {
             image.downloadUrl.addOnSuccessListener { uri ->
                 Log.d("tag", "onSuccess: Uploaded Image URl is $uri")
+                myRef.setValue("$uri")
             }
             Toast.makeText(requireActivity(), "Image Is Uploaded.", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(requireActivity(), "Upload Failled.", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun getFileExt(contentUri: Uri?): String? {

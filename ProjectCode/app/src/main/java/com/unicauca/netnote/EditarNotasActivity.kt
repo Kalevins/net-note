@@ -12,8 +12,16 @@ import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.activity_editar_notas.*
 import kotlinx.android.synthetic.main.activity_main.*
 import models.Document
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class EditarNotasActivity : AppCompatActivity() {
+
+    lateinit var auth: FirebaseAuth
+    lateinit var textView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_notas)

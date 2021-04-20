@@ -4,14 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".EditarNotasActivity">
+    tools:context=".EditarNotasActivity"
+    >
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar_edit"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_bar_save"
+            app:title="NetNote"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <EditText
         android:id="@+id/Titulodelasnotas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:gravity="center"
+        android:hint="Título"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -21,35 +40,28 @@
     <TextView
         android:id="@+id/Contenido_notas"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:hint="Comienza agregando imagenes, texto o audio con el menú de abajo"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/notas_screen"
-        app:layout_constraintTop_toBottomOf="@id/Titulodelasnotas" />
+        app:layout_constraintTop_toBottomOf="@id/Titulodelasnotas"
+        tools:ignore="UnknownId"
+        tools:layout_editor_absoluteX="0dp" />
 
-
-
-    <FrameLayout
-        android:id="@+id/notas_screen"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:fitsSystemWindows="true"
+    <fragment
+        android:id="@+id/edition_toolbar"
+        android:name="com.unicauca.netnote.EditarFragment"
+        android:layout_width="411dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="320dp"
+        android:label="@string/menu_home"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="480dp">
-
-        <fragment
-            android:id="@+id/edition_toolbar"
-            android:name="com.unicauca.netnote.EditarFragment"
-            android:label="@string/menu_home"
-            tools:layout="@layout/fragment_editar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/Contenido_notas"
+        tools:layout="@layout/fragment_editar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

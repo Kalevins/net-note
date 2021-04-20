@@ -24,12 +24,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <TextView
+    <EditText
         android:id="@+id/Titulodelasnotas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:gravity="center"
+        android:hint="Título"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -45,7 +46,7 @@
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/notas_screen"
-        app:layout_constraintTop_toBottomOf="@id/Titulo_notas"
+        app:layout_constraintTop_toBottomOf="@id/Titulodelasnotas"
         tools:ignore="UnknownId"
         tools:layout_editor_absoluteX="0dp" />
 

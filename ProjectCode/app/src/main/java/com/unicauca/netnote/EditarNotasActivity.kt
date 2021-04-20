@@ -2,10 +2,16 @@ package com.unicauca.netnote
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.ActionMenuItemView
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.activity_editar_notas.*
 import kotlinx.android.synthetic.main.activity_main.*
+import models.Document
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -20,34 +26,25 @@ class EditarNotasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_notas)
 
-        auth = FirebaseAuth.getInstance()
-        textView = findViewById(R.id.Contenido_notas)
+        val titleDocument = intent.getStringExtra("Titulo")
+        Titulodelasnotas.hint = titleDocument
 
-        val database = Firebase.database
-        val userID = auth.currentUser?.uid
-        val imagesPath = database.getReference("/users/$userID/imageURI/")
-
-        addPostEventListener(imagesPath)
+        findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
+            addTitle(it)
+        }
 
     }
 
-    private fun addPostEventListener(postReference: DatabaseReference) {
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
-                val map: Map<String, Any> = dataSnapshot.getValue() as Map<String, Any>
-                val namesImages = map.keys // Vector con los nombres de las imagenes
-                val urlImages = map.values // Vector con las URL de las imagenes
-                Log.d("Info","$namesImages")
-                textView.text = urlImages.toString()
-                // ...
-            }
+    private fun addTitle(view: View){
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w("Error", "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        postReference.addValueEventListener(postListener)
+        val editText = findViewById<EditText>(R.id.Titulodelasnotas)
+        val titulo: String
+        val documento: Document
+
+
+
+        titulo = editText.text.toString()
+
+        Log.d("INFO",titulo)
     }
 }

@@ -9,8 +9,7 @@ import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var refDatabase: DatabaseReference
+    private lateinit var auth: FirebaseAuth //Autenticacion
     private lateinit var loginButton: Button
     private lateinit var registerButton: Button
     private lateinit var skipButton: Button
@@ -19,34 +18,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
 
-        //Auth
+        //Autenticacion
         auth = FirebaseAuth.getInstance()
-        val userID = auth.currentUser?.uid
-
-        //Database
-        val firebase: FirebaseDatabase = FirebaseDatabase.getInstance()
-        refDatabase = firebase.getReference("$userID")
-
         auth.addAuthStateListener {
-            if(auth.currentUser != null){
-                startActivity(Intent(this, PrincipalActivity::class.java))
+            if(auth.currentUser != null){ //Usuario logeado
+                startActivity(Intent(this, PrincipalActivity::class.java)) //Direge a la pantalla principal
             }
         }
 
+        //Asigancion
         loginButton = findViewById(R.id.main_iniciar_button)
         registerButton = findViewById(R.id.main_registrarse_button)
         skipButton = findViewById(R.id.main_saltar_button)
 
+        //Listener botones
         loginButton.setOnClickListener {
-            startActivity(Intent(this, IniciarSesionActivity::class.java))
+            startActivity(Intent(this, IniciarSesionActivity::class.java)) //Direge a la pantalla de inicio de sesion
         }
 
         registerButton.setOnClickListener {
-            startActivity(Intent(this, RegistrarseActivity::class.java))
+            startActivity(Intent(this, RegistrarseActivity::class.java)) //Direge a la pantalla de registro
         }
 
         skipButton.setOnClickListener {
-            startActivity(Intent(this, InformacionActivity::class.java))
+            startActivity(Intent(this, InformacionActivity::class.java)) //Direge a la pantalla de informacion
         }
     }
 }

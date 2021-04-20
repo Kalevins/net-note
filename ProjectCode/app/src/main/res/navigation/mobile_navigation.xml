@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_creditos"
-        android:name="com.unicauca.netnote.fragment_creditos"
+        android:name="com.unicauca.netnote.CreditosFragment"
         android:label="@string/creditos"
         tools:layout="@layout/fragment_creditos" />
 </navigation>

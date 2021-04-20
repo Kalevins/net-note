@@ -3,55 +3,55 @@ package com.unicauca.netnote
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.activity_editar_notas.*
-import kotlinx.android.synthetic.main.activity_main.*
-import models.Document
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_editar_notas.*
+import models.Document
 
 class EditarNotasActivity : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
-    lateinit var textView: TextView
-    lateinit var documentID: String
-    var database: FirebaseDatabase = Firebase.database
+    //Botones
+    private lateinit var textView: TextView
+    private lateinit var documentID: String
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance() //Aunteticacion
+    private var database: FirebaseDatabase = Firebase.database //Base de datos (Realtime Database)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_editar_notas)
+        setContentView(R.layout.activity_editar_notas) //Asigna el layout
 
         val titleDocument = intent.getStringExtra("Titulo")
-        Titulodelasnotas.hint = titleDocument
+        Titulo_notas.hint = titleDocument
       
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
         }
 
-        val userID = auth.currentUser?.uid
-        documentID = obtenerDocumentID()
-        val imagesPath = database.getReference("/users/$userID/$documentID/")
+        //Asignacion
+        textView = findViewById(R.id.Contenido_notas)
 
-        addPostEventListener(imagesPath)
+        val userID = auth.currentUser?.uid //Obtiene ID usuario actual
+        documentID = obtenerDocumentID() //Obtiene ID documento actual
+        val path = database.getReference("/users/$userID/$documentID/") //Direccion documento actual
+
+        addPostEventListener(path) //Obtencion valores de la base de datos (Realtime DataBase)
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        val userID = auth.currentUser?.uid
-        val path = database.getReference("/users/$userID/$documentID/")
-        path.child("title").get().addOnSuccessListener {
-            if (it.value == null) {
-                path.removeValue()
+    override fun onDestroy() {
+        super.onDestroy()
+        val userID = auth.currentUser?.uid //Obtiene ID usuario actual
+        val path = database.getReference("/users/$userID/$documentID/") //Direccion documento actual
+        path.child("title").get().addOnSuccessListener { //Revisa si hay un titulo
+            if (it.value == null) { //Si es nulo
+                path.removeValue() //Elimina el documento de la base de datos (RealTime DataBase)
             }
-            //Log.i("firebase", "Got value ${it.value}")
         }
     }
 
@@ -71,7 +71,7 @@ class EditarNotasActivity : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message
-                Log.w("Error", "loadPost:onCancelled", databaseError.toException())
+                //Log.w("Error", "loadPost:onCancelled", databaseError.toException())
             }
         }
         postReference.addValueEventListener(postListener)
@@ -79,19 +79,20 @@ class EditarNotasActivity : AppCompatActivity() {
 
     private fun addTitle(view: View){
 
-        val editText = findViewById<EditText>(R.id.Titulodelasnotas)
+        val editText = findViewById<EditText>(R.id.Titulo_notas)
         val titulo: String
         val documento: Document
 
-
-
         titulo = editText.text.toString()
+
+        val userID = auth.currentUser?.uid
+        database.getReference("/users/$userID/$documentID/title/").setValue(titulo)
 
         Log.d("INFO",titulo)
     }
 
     fun obtenerDocumentID(): String {
         val extras: Bundle? = intent.extras
-        return extras!!.getString("documentID").toString()
+        return extras!!.getString("documentID").toString() //Carga el documentID de la actividad PrincipalActivity
     }
 }

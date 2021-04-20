@@ -24,13 +24,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <EditText
-        android:id="@+id/Titulo_notas"
+    <TextView
+        android:id="@+id/Titulodelasnotas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:gravity="center"
-        android:hint="Título"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -65,17 +64,3 @@
         tools:layout="@layout/fragment_editar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--<FrameLayout
-        android:id="@+id/notas_screen"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="480dp">
-
-    </FrameLayout>-->
-
-

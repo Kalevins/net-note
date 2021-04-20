@@ -2,7 +2,7 @@
 <paths>
     <external-path
         name="my_images"
-        path="Android/data/com.unicauca.netnote.imagecaptureandsave/files/Pictures" />
+        path="NetNote/data/com.unicauca.netnote.imagecaptureandsave/files/Pictures" />
     <external-files-path
         name="external_files"
         path="/" />

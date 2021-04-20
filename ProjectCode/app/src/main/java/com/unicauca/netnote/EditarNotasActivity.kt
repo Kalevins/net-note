@@ -21,6 +21,8 @@ class EditarNotasActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
     lateinit var textView: TextView
+    lateinit var documentID: String
+    var database: FirebaseDatabase = Firebase.database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +30,51 @@ class EditarNotasActivity : AppCompatActivity() {
 
         val titleDocument = intent.getStringExtra("Titulo")
         Titulodelasnotas.hint = titleDocument
-
+      
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
         }
 
+        val userID = auth.currentUser?.uid
+        documentID = obtenerDocumentID()
+        val imagesPath = database.getReference("/users/$userID/$documentID/")
+
+        addPostEventListener(imagesPath)
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val userID = auth.currentUser?.uid
+        val path = database.getReference("/users/$userID/$documentID/")
+        path.child("title").get().addOnSuccessListener {
+            if (it.value == null) {
+                path.removeValue()
+            }
+            //Log.i("firebase", "Got value ${it.value}")
+        }
+    }
+
+    private fun addPostEventListener(postReference: DatabaseReference) {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                if (dataSnapshot.getValue()!=null) {
+                    val map: Map<String, Any> = dataSnapshot.getValue() as Map<String, Any>
+                    val namesImages = map.keys // Vector con los nombres de las imagenes
+                    val urlImages = map.values // Vector con las URL de las imagenes
+                    Log.d("Info", "$namesImages")
+                    textView.text = urlImages.toString()
+                }
+                // ...
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("Error", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        postReference.addValueEventListener(postListener)
     }
 
     private fun addTitle(view: View){
@@ -46,5 +88,10 @@ class EditarNotasActivity : AppCompatActivity() {
         titulo = editText.text.toString()
 
         Log.d("INFO",titulo)
+    }
+
+    fun obtenerDocumentID(): String {
+        val extras: Bundle? = intent.extras
+        return extras!!.getString("documentID").toString()
     }
 }

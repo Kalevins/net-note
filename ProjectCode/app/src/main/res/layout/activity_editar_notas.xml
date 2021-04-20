@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarNotasActivity"
-    >
+    android:fitsSystemWindows="true"
+    tools:context=".EditarNotasActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,13 +23,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <TextView
-        android:id="@+id/Titulodelasnotas"
+    <EditText
+        android:id="@+id/Titulo_notas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:gravity="center"
+        android:hint="Título"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -40,27 +39,21 @@
         android:id="@+id/Contenido_notas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:hint="Comienza agregando imagenes, texto o audio con el menú de abajo"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/notas_screen"
-        app:layout_constraintTop_toBottomOf="@id/Titulo_notas"
-        tools:ignore="UnknownId"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/edition_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/Titulo_notas" />
 
     <fragment
         android:id="@+id/edition_toolbar"
         android:name="com.unicauca.netnote.EditarFragment"
-        android:layout_width="411dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="320dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:label="@string/menu_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Contenido_notas"
         tools:layout="@layout/fragment_editar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

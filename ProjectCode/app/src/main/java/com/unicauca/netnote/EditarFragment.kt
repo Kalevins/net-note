@@ -31,21 +31,21 @@ class EditarFragment : Fragment() {
 
     val CAMERA_REQUEST_CODE = 102
     val GALLERY_REQUEST_CODE = 105
-    lateinit var selectedImage: ImageView
     lateinit var cam_buttom: ImageButton
     lateinit var gallery_buttom: ImageButton
     lateinit var mic_buttom: ImageButton
-    lateinit var imageView: ImageView
     lateinit var currentPhotoPath: String
     lateinit var storageReference: StorageReference
     lateinit var auth: FirebaseAuth
-
+    lateinit var documentID: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val actividad: EditarNotasActivity = activity as EditarNotasActivity
+        documentID = actividad.obtenerDocumentID()
         val vi: View = inflater.inflate(R.layout.fragment_editar, container, false)
         return vi
     }
@@ -124,7 +124,7 @@ class EditarFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
         val imageName = name.substring(0,20)
-        val myRef = database.getReference("/users/$userID/imageURI/$imageName/")
+        val myRef = database.getReference("/users/$userID/$documentID/images/$imageName/")
         val image = storageReference.child("pictures/$name")
         image.putFile(contentUri!!).addOnSuccessListener {
             image.downloadUrl.addOnSuccessListener { uri ->

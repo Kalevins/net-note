@@ -25,10 +25,13 @@ import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SearchView
+import com.google.firebase.database.ktx.database
 import kotlinx.android.synthetic.main.activity_principal.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -38,6 +41,7 @@ class PrincipalActivity : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private lateinit var documentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,21 +55,15 @@ class PrincipalActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        /*val user = auth.currentUser
-
-        user?.let {
-            // Name, email address, and profile photo Url
-            val name = user.displayName
-            val email = user.email
-            val photoUrl = user.photoUrl
-            // Check if user's email is verified
-            val emailVerified = user.isEmailVerified
-        }
-        */
-
-        fab.setOnClickListener { //view ->
-            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG) .setAction("Action", null).show()
-            startActivity(Intent(this, EditarNotasActivity::class.java))
+        fab.setOnClickListener {
+            //val database = Firebase.database
+            auth = FirebaseAuth.getInstance()
+            //val userID = auth.currentUser?.uid
+            documentID = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
+            //database.getReference("/users/$userID/$documentID/title/").setValue("SinTitulo")
+            val intent = Intent(this, EditarNotasActivity::class.java)
+            intent.putExtra("documentID", documentID)
+            startActivity(intent)
         }
 
         val navController = findNavController(R.id.nav_host_fragment)

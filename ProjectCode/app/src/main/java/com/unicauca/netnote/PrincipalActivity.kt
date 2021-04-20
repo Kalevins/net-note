@@ -1,5 +1,7 @@
 package com.unicauca.netnote
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -15,6 +17,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.nav_header_main.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.SearchView
+import kotlinx.android.synthetic.main.activity_principal.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import models.Document
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -30,7 +44,6 @@ class PrincipalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_principal)
 
         auth = FirebaseAuth.getInstance()
-
         toolbar = findViewById(R.id.toolbar)
         fab = findViewById(R.id.edit_buttom)
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -61,7 +74,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout
+                R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout, R.id.nav_creditos
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -96,4 +109,24 @@ class PrincipalActivity : AppCompatActivity() {
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_bar,menu)
+
+        val search = menu?.findItem(R.id.search)
+        val searchView = search?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
 }

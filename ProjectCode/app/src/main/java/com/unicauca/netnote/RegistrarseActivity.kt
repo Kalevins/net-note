@@ -13,30 +13,42 @@ import com.google.firebase.auth.UserProfileChangeRequest
 
 class RegistrarseActivity : AppCompatActivity() {
 
+    //Autenticacion
     private lateinit var auth: FirebaseAuth
+    //Botones
     private lateinit var registerButton: Button
+    private lateinit var loginButton: Button
+    //Cajas de texto
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var nameEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registrarse)
+        setContentView(R.layout.activity_registrarse) //Carga el layout
 
+        //Autenticacion
         auth = FirebaseAuth.getInstance()
 
+        //Asigancion
         registerButton = findViewById(R.id.registrarse_registrarse_button)
+        loginButton = findViewById(R.id.registrarse_iniciar_button)
         emailEditText = findViewById(R.id.registrarse_correo_editText)
         passwordEditText = findViewById(R.id.registrarse_contrasena_editText)
         nameEditText = findViewById(R.id.registrarse_nombre_editText)
 
+        //Listener botones
         registerButton.setOnClickListener {
             registerUser()
+        }
+        loginButton.setOnClickListener {
+            startActivity(Intent(this, IniciarSesionActivity::class.java)) //Direge a la pantalla de inicio de sesion
         }
 
 
     }
     private fun registerUser() {
+        //Condiciones de registro
         if (emailEditText.text.toString().isEmpty()) {
             emailEditText.error = resources.getString(R.string.error_ingresarCorreo)
             emailEditText.requestFocus()
@@ -57,15 +69,14 @@ class RegistrarseActivity : AppCompatActivity() {
             passwordEditText.requestFocus()
             return
         }
-
-        auth.createUserWithEmailAndPassword(
+        auth.createUserWithEmailAndPassword( //Creacion usuario (Email, contrasena)
                 emailEditText.text.toString(),
                 passwordEditText.text.toString()
         )
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    user?.sendEmailVerification()
+                    val user = auth.currentUser //Usuario actual
+                    user?.sendEmailVerification() //Envio email de verificacion
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast.makeText(baseContext, resources.getString(R.string.acierto_registrarse), Toast.LENGTH_SHORT).show()
@@ -76,18 +87,14 @@ class RegistrarseActivity : AppCompatActivity() {
                                     .build()
                                 user.updateProfile(profileUpdates)
 
-                                auth.signOut()
-                                startActivity(Intent(this, IniciarSesionActivity::class.java))
+                                auth.signOut() //Cerrar sesion
+                                startActivity(Intent(this, IniciarSesionActivity::class.java)) //Direge a la pantalla de inicio de sesion
                                 finish()
                             }
                         }
 
                 } else {
-
-                    Toast.makeText(
-                            baseContext, resources.getString(R.string.error_registrarse),
-                            Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(baseContext, resources.getString(R.string.error_registrarse), Toast.LENGTH_SHORT ).show()
                 }
             }
     }

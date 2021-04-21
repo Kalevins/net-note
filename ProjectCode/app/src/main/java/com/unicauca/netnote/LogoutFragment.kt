@@ -11,12 +11,12 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LogoutFragment : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth //Autenticacion
 
     override fun onStart() {
         super.onStart()
-        auth = FirebaseAuth.getInstance()
-        auth.signOut()
-        startActivity(Intent(getActivity(), MainActivity::class.java))
+        auth = FirebaseAuth.getInstance() //Autenticacion
+        auth.signOut() //Cierre de sesion
+        startActivity(Intent(getActivity(), MainActivity::class.java)) //Direge a la pantalla inicial
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 //import kotlinx.android.synthetic.main.notas_lista.*
 import models.Document
 
-class NotasListaActivity : AppCompatActivity(), RecyclerAdapter.onDocumentClickListener {
+class NotasListaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
 
         super.onCreate(savedInstanceState)
@@ -26,17 +26,18 @@ class NotasListaActivity : AppCompatActivity(), RecyclerAdapter.onDocumentClickL
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        /*
         val listDocuments = listOf( Document("Teoria Electromagnetica", 2, true, true, true, "Contenido de Teoria Electromag" ),
                 Document("Aplicaciones Móviles", 2,true, true, true, "Contenido de Apli moviles" ),
                 Document("Medios de transmisión", 8, true, true, true, "Contenido de medios de transmision" ))
         Log.d("Info","*******************Esta creando el listDocument")
-        recyclerView.adapter = RecyclerAdapter(this, listDocuments, this)
+        recyclerView.adapter = RecyclerAdapter(this, listDocuments, this)*/
 
     }
-
+    /*
     override fun onItemClick(title: String) {
         val intent = Intent(this, EditarNotasActivity::class.java)
         intent.putExtra("Titulo", title)
         startActivity(intent)
-    }
+    }*/
 }

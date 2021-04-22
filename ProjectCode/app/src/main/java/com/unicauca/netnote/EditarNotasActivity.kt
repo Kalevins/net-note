@@ -7,11 +7,15 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_editar_notas.*
+import kotlinx.android.synthetic.main.activity_editar_notas.recyclerView
+import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
 
 class EditarNotasActivity : AppCompatActivity() {
@@ -27,6 +31,15 @@ class EditarNotasActivity : AppCompatActivity() {
         setContentView(R.layout.activity_editar_notas) //Asigna el layout
 
         val titleDocument = intent.getStringExtra("Titulo")
+        val contentDocument = intent.getStringArrayListExtra("Contenido")
+        val mutableContentDocument = contentDocument?.toMutableList<String>()
+
+
+        //AQUI HACER EL RECYCLER VIEW
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recyclerView.adapter = mutableContentDocument?.let { RecyAdapterEditNotas(this, it) }
+
         Titulo_notas.hint = titleDocument
       
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
@@ -34,7 +47,7 @@ class EditarNotasActivity : AppCompatActivity() {
         }
 
         //Asignacion
-        textView = findViewById(R.id.Contenido_notas)
+        //textView = findViewById(R.id.Contenido_notas)
 
         val userID = auth.currentUser?.uid //Obtiene ID usuario actual
         documentID = obtenerDocumentID() //Obtiene ID documento actual

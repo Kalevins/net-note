@@ -6,7 +6,7 @@ data class Document(
     val audio:Boolean,
     val scans:Boolean,
     val texts:Boolean,
-    val content: String
+    val content: MutableList<String>
 
 ) {
 }

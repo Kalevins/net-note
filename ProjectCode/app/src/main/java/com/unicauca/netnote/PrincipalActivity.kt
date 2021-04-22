@@ -41,7 +41,7 @@ class PrincipalActivity : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton //Boton nuevo
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
-    private lateinit var documentID: String
+    private var documentID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

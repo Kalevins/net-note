@@ -15,16 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/mic_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_mic_24" />
+
 
     <ImageButton
         android:id="@+id/cam_image"
@@ -36,7 +27,20 @@
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+        app:srcCompat="@drawable/ic_baseline_photo_camera_24"
+        android:contentDescription="TODO" />
+
+    <ImageButton
+        android:id="@+id/mic_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gallery_image"
+        app:layout_constraintStart_toEndOf="@id/cam_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_mic_24"
+        android:contentDescription="TODO" />
 
     <ImageButton
         android:id="@+id/gallery_image"
@@ -47,7 +51,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/mic_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_image_24" />
+        app:srcCompat="@drawable/ic_baseline_image_24"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/gallery_text"
@@ -57,8 +62,7 @@
         app:layout_constraintEnd_toEndOf="@id/gallery_image"
         app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="@id/gallery_image"
-        tools:layout_editor_absoluteY="78dp"
-        app:layout_constraintBottom_toBottomOf="@id/gallery_image"/>/>
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/cam_text"

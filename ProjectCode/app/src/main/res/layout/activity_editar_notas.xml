@@ -36,19 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Contenido_notas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Comienza agregando imagenes, texto o audio con el menú de abajo"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/notas_screen"
-        app:layout_constraintTop_toBottomOf="@id/Titulo_notas"
-        tools:ignore="UnknownId"
-        tools:layout_editor_absoluteX="0dp" />
-
     <fragment
         android:id="@+id/edition_toolbar"
         android:name="com.unicauca.netnote.EditarFragment"
@@ -62,5 +49,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Contenido_notas"
         tools:layout="@layout/fragment_editar" />
+
+    <TextView
+        android:id="@+id/Contenido_notas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comienza agregando imagenes, texto o audio con el menú de abajo"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulodelasnotas"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

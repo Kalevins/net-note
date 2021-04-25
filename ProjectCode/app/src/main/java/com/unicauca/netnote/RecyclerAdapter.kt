@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.documents_row.view.*
 import models.Document
 
 class RecyclerAdapter ( private val context: Context,
-                        val listDocuments:List<Document>,
+                        val listDocuments:MutableList<Document>,
                         private val itemClickListener:onDocumentClickListener):RecyclerView.Adapter<BaseViewHolder<*>>(){
     interface onDocumentClickListener{
-        fun onItemClick(title: String)
+        fun onItemClick(title: String, contentDocument: MutableList<String>)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
        return DocumentsViewHolder(LayoutInflater.from(context).inflate(R.layout.documents_row, parent,false))
@@ -38,7 +38,7 @@ class RecyclerAdapter ( private val context: Context,
         override fun bind(item: Document, position: Int) {
 
             itemView.setOnClickListener{
-                itemClickListener.onItemClick(item.title)
+                itemClickListener.onItemClick(item.title, item.content)
             }
 
             val scanImage: String = if(item.scans) {

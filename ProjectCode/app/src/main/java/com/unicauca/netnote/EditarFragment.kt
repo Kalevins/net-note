@@ -122,6 +122,7 @@ class EditarFragment : Fragment() {
                 uploadImageToFirebase(imageFileName, contentUri)
             }
         }
+
     }
 
     private fun uploadImageToFirebase(name: String, contentUri: Uri?) {

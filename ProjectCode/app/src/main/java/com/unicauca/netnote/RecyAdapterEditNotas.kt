@@ -37,12 +37,19 @@ class RecyAdapterEditNotas (private val context: Context,
 
         override fun bind(item: String, position: Int) {
 
+            var formato: String = item.substring(0,4)
+            var link: String = item.substring(4)
 
+            if( formato == "JPEG"){
 
+                Glide.with(context).load(link).into(itemView.imageDocs)
+                //itemView.ContentDoc.setCompoundDrawablesWithIntrinsicBounds(null, itemView.imageDocs.drawable, null, null)
 
-            Glide.with(context).load(item).into(itemView.imageDocs)
-            itemView.ContentDoc.setCompoundDrawablesWithIntrinsicBounds(null, itemView.imageDocs.drawable, null, null)
-            itemView.ContentDoc.text = "Kevin es gay"
+            }
+            else if(formato == "TEXT") {
+
+                itemView.ContentDoc.text = link
+            }
         }
 
     }

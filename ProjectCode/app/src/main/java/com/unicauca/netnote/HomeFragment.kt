@@ -94,6 +94,19 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                     var titleDocument: String
                     var contentDocument : MutableList<String>
                     var arrayLinksImages: Collection<String>
+                    var idImages = mutableListOf<String>()
+                    var arrayKeyImages: Set<String>
+                    var arrayLinksTexts: Collection<String>
+                    var arrayKeyTexts: Set<String>
+                    var idTexts = mutableListOf<String>()
+                    var arrayLinksAudios: Collection<String>
+                    var arrayKeyAudios: Set<String>
+                    var idAudios = mutableListOf<String>()
+                    var timeStamp: String
+                    var linksContent: String
+                    var mapContent = mutableMapOf<Long, String>()
+                    var contentDocumentLinks : MutableList<String>
+
 
                     for (atributes in documentArrayAtributes){
                         contentDocument = mutableListOf("")
@@ -110,8 +123,18 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             scansInDocument =  true
                             dictionaryImages = mapAtributes["images"] as Map<String, String>
                             Log.d("INFO IMAGES", "$dictionaryImages")
+
                             arrayLinksImages = dictionaryImages.values
-                            contentDocument.addAll(arrayLinksImages)
+                            arrayKeyImages = dictionaryImages.keys
+
+                            for ((id,link) in arrayKeyImages zip arrayLinksImages){
+
+                                idImages.add(id.replace("_","")+link)
+
+                            }
+
+
+                            contentDocument.addAll(idImages)
 
                         }
                         else{
@@ -125,6 +148,21 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             textsInDocument =  true
                             dictionaryTexts = mapAtributes["texts"] as Map<String, String>
 
+                            arrayLinksTexts = dictionaryTexts.values
+                            arrayKeyTexts = dictionaryTexts.keys
+
+                            for ((id,link) in arrayKeyTexts zip arrayLinksTexts){
+
+
+                                idTexts.add(id.replace("_","")+link)
+
+                            }
+
+
+                            contentDocument.addAll(idTexts)
+
+
+
                         }
                         else{
 
@@ -137,6 +175,18 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             audioInDocument =  true
                             dictionaryAudios = mapAtributes["audios"] as Map<String, String>
 
+                            arrayLinksAudios = dictionaryAudios.values
+                            arrayKeyAudios = dictionaryAudios.keys
+
+                            for ((id,link) in arrayKeyAudios zip arrayLinksAudios){
+
+                                idAudios.add(id.replace("_","")+link)
+
+                            }
+
+
+                            contentDocument.addAll(idAudios)
+
                         }
                         else{
 
@@ -144,9 +194,29 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
 
                         }
 
+                        Log.d("INFO CD", "$contentDocument")
+
+                        for (content in contentDocument){
+                            if (content != "") {
+                                timeStamp = content.substring(4, 18)
+                                Log.d("INFO CD", "$timeStamp")
+                                linksContent = content.substring(0,4)+content.substring(18)
+                                Log.d("INFO LC", "$linksContent")
+
+                                mapContent[timeStamp.toLong()] = linksContent
+                            }
+
+
+                        }
+
+                        mapContent = mapContent.toSortedMap()
+
+                        contentDocumentLinks = mapContent.values.toMutableList()
+
+
                         titleDocument = mapAtributes["title"].toString()
 
-                        listOfDocuments.add(Document(titleDocument,3,audioInDocument,scansInDocument,textsInDocument,contentDocument))
+                        listOfDocuments.add(Document(titleDocument,3,audioInDocument,scansInDocument,textsInDocument,contentDocumentLinks))
 
 
 

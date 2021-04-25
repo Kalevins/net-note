@@ -25,25 +25,32 @@ import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SearchView
+import com.google.firebase.database.ktx.database
 import kotlinx.android.synthetic.main.activity_principal.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PrincipalActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var auth: FirebaseAuth
-    private lateinit var toolbar: Toolbar
-    private lateinit var fab: FloatingActionButton
+    private lateinit var auth: FirebaseAuth //Autenticacion
+    private lateinit var toolbar: Toolbar //Barra superior
+    private lateinit var fab: FloatingActionButton //Boton nuevo
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private var documentID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_principal)
+        setContentView(R.layout.activity_principal) //Asigne el layout
 
+        //Autenticacion
         auth = FirebaseAuth.getInstance()
+
+        //Asignacion
         toolbar = findViewById(R.id.toolbar)
         fab = findViewById(R.id.edit_buttom)
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -51,28 +58,16 @@ class PrincipalActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        /*val user = auth.currentUser
-
-        user?.let {
-            // Name, email address, and profile photo Url
-            val name = user.displayName
-            val email = user.email
-            val photoUrl = user.photoUrl
-            // Check if user's email is verified
-            val emailVerified = user.isEmailVerified
-        }
-        */
-
-        fab.setOnClickListener { //view ->
-            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG) .setAction("Action", null).show()
-            startActivity(Intent(this, EditarNotasActivity::class.java))
+        fab.setOnClickListener {
+            documentID = SimpleDateFormat("yyyyMMddHHmmss").format(Date()) //Formato unico (Fecha) del nuevo documento
+            val intent = Intent(this, EditarNotasActivity::class.java) //Intent actividad EditarNotasActivity
+            intent.putExtra("documentID", documentID) //Envia "documentID"
+            startActivity(intent) //Inicia la actividad
         }
 
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
 
-        appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration( //Menu de navegacion
             setOf(
                 R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout, R.id.nav_creditos
             ), drawerLayout
@@ -83,28 +78,42 @@ class PrincipalActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val currentUser = auth.currentUser
+        val currentUser = auth.currentUser //Usuario actual
         updateUI(currentUser)
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser == null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java)) //Direge a la pantalla de inicio
             finish()
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+    override fun onSupportNavigateUp(): Boolean { //Informacion de usuario
+        val navController = findNavController(R.id.nav_host_fragment) //Carga el layout
 
+        //Autenticacion
         val user = auth.currentUser
+
+        //Variable auxiliar
         var textView: TextView
 
-        if (user != null) {
+        if (user != null) { //Si el usuario esta registrado
+            //Nombre
             textView = findViewById(R.id.name_textView)
             textView.text = user.displayName
+            //Correo
             textView = findViewById(R.id.email_textView)
             textView.text = user.email
+        }
+        else {
+            //Nombre
+            textView = findViewById(R.id.name_textView)
+            textView.text = "NetNote"
+            //Correo
+            textView = findViewById(R.id.email_textView)
+            textView.text = "Registrate para mas"
+
         }
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

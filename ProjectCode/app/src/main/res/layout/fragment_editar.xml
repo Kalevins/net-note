@@ -6,28 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".EditarFragment">
 
-    <ImageView
-        android:id="@+id/Contenido_notas_Image"
-        android:layout_width="229dp"
-        android:layout_height="158dp"
-        app:layout_constraintBottom_toTopOf="@+id/mic_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
     <ImageButton
-        android:id="@+id/cam_image"
+        android:id="@+id/text_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/mic_image"
+        app:layout_constraintEnd_toStartOf="@id/cam_image"
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_photo_camera_24"
+        app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+
+    <ImageButton
+        android:id="@+id/mic_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mic_image"
+        app:layout_constraintStart_toEndOf="@id/text_image"
+        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_mic_24"
         android:contentDescription="TODO" />
 
     <ImageButton
@@ -39,8 +40,7 @@
         app:layout_constraintEnd_toStartOf="@id/gallery_image"
         app:layout_constraintStart_toEndOf="@id/cam_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_mic_24"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_baseline_mic_24" />
 
     <ImageButton
         android:id="@+id/gallery_image"
@@ -55,14 +55,14 @@
         android:contentDescription="TODO" />
 
     <TextView
-        android:id="@+id/gallery_text"
+        android:id="@+id/text_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Galería"
-        app:layout_constraintEnd_toEndOf="@id/gallery_image"
-        app:layout_constraintHorizontal_bias="0.423"
-        app:layout_constraintStart_toStartOf="@id/gallery_image"
-        tools:ignore="MissingConstraints" />
+        android:text="Texto"
+        app:layout_constraintEnd_toEndOf="@id/text_image"
+        app:layout_constraintStart_toStartOf="@id/text_image"
+        tools:layout_editor_absoluteY="78dp"
+        app:layout_constraintBottom_toBottomOf="@id/text_image"/>
 
     <TextView
         android:id="@+id/cam_text"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="@id/cam_image"
         app:layout_constraintStart_toStartOf="@id/cam_image"
         tools:layout_editor_absoluteY="78dp"
-        app:layout_constraintBottom_toBottomOf="@id/cam_image"/>/>
+        app:layout_constraintBottom_toBottomOf="@id/cam_image"/>
 
     <TextView
         android:id="@+id/mic_text"
@@ -83,5 +83,16 @@
         app:layout_constraintStart_toStartOf="@id/mic_image"
         tools:layout_editor_absoluteY="78dp"
         app:layout_constraintBottom_toBottomOf="@id/mic_image"/>
+
+    <TextView
+        android:id="@+id/gallery_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Galería"
+        app:layout_constraintEnd_toEndOf="@id/gallery_image"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="@id/gallery_image"
+        tools:layout_editor_absoluteY="78dp"
+        app:layout_constraintBottom_toBottomOf="@id/gallery_image"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

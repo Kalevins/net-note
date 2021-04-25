@@ -11,13 +11,13 @@
         android:id="@+id/informacion_bienvenido_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/informacion_bienvenido_text"
         android:textColor="#FF5722"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,9 +74,9 @@
         android:id="@+id/info_camara_text"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        android:text="Graba el audio encima de tus notas escritas."
+        android:text="Escanea tus notas físicas y trabaja encima de estas."
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/imagen_camara"
         app:layout_constraintStart_toStartOf="@+id/info_audio_text"
@@ -97,9 +97,9 @@
         android:id="@+id/info_editar_text"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        android:text="Graba el audio encima de tus notas escritas."
+        android:text="Edita tus notas y audios de la forma que quieras."
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@id/info_camara_text"
         app:layout_constraintStart_toEndOf="@id/imagen_editar"
@@ -109,24 +109,27 @@
         android:id="@+id/imagen_nube"
         android:layout_width="64dp"
         android:layout_height="60dp"
-        app:srcCompat="@drawable/nube"
-        app:layout_constraintTop_toBottomOf="@id/imagen_editar"
-        app:layout_constraintStart_toStartOf="@+id/imagen_editar"
-        app:layout_constraintEnd_toStartOf="@id/info_nube_text"
         android:layout_marginEnd="15dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/info_nube_text"
+        app:layout_constraintStart_toStartOf="@+id/imagen_editar"
+        app:layout_constraintTop_toBottomOf="@id/imagen_editar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/nube" />
 
     <TextView
         android:id="@+id/info_nube_text"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif"
-        android:text="Graba el audio encima de tus notas escritas."
+        android:text="Manten todas tus notas en la nube y accede a ellas desde cualquier dispositivo."
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/info_editar_text"
         app:layout_constraintStart_toEndOf="@id/imagen_nube"
-        app:layout_constraintTop_toBottomOf="@id/info_editar_text" />
+        app:layout_constraintTop_toBottomOf="@id/info_editar_text"
+        app:layout_constraintVertical_bias="0.014" />
 
     <Button
         android:id="@+id/informacion_bienvenida_button"
@@ -136,10 +139,12 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/informacion_bienvenida_button"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/info_nube_text"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/imagen_nube"
-        app:layout_constraintTop_toBottomOf="@id/info_nube_text" />
-
+        app:layout_constraintTop_toBottomOf="@id/info_nube_text"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

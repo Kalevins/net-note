@@ -133,8 +133,8 @@
 
     <Button
         android:id="@+id/informacion_bienvenida_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/informacion_bienvenida_button"

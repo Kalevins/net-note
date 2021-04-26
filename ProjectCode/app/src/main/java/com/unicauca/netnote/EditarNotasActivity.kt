@@ -21,7 +21,7 @@ import models.Document
 class EditarNotasActivity : AppCompatActivity() {
 
     //Botones
-    //private lateinit var textView: TextView
+    private lateinit var textView: TextView
     private lateinit var documentID: String
     private var auth: FirebaseAuth = FirebaseAuth.getInstance() //Aunteticacion
     private var database: FirebaseDatabase = Firebase.database //Base de datos (Realtime Database)
@@ -33,6 +33,7 @@ class EditarNotasActivity : AppCompatActivity() {
         val titleDocument = intent.getStringExtra("Titulo")
         val contentDocument = intent.getStringArrayListExtra("Contenido")
         val mutableContentDocument = contentDocument?.toMutableList<String>()
+
 
         //AQUI HACER EL RECYCLER VIEW
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -53,6 +54,7 @@ class EditarNotasActivity : AppCompatActivity() {
         val path = database.getReference("/users/$userID/$documentID/") //Direccion documento actual
 
         addPostEventListener(path) //Obtencion valores de la base de datos (Realtime DataBase)
+
     }
 
     override fun onDestroy() {
@@ -75,7 +77,7 @@ class EditarNotasActivity : AppCompatActivity() {
                     val namesImages = map.keys // Vector con los nombres de las imagenes
                     val urlImages = map.values // Vector con las URL de las imagenes
                     Log.d("Info", "$namesImages")
-                    //textView.text = urlImages.toString()
+                    textView.text = urlImages.toString()
                 }
                 // ...
             }

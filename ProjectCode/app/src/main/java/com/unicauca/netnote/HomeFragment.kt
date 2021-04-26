@@ -63,7 +63,7 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
             Document("Aplicaciones Móviles", 2,true, false, true, "Contenido de Apli moviles" ),
             Document("Medios de transmisión", 8, true, true, false, "Contenido de medios de transmision" )
         )*/
-        Log.d("Info","*******************Esta creando el listDocument*******************")
+        Log.d("Info","*******************Esta creando el listDocument")
         recyclerView.adapter = RecyclerAdapter(itemView.context, listOfDocuments, this)
 
     }

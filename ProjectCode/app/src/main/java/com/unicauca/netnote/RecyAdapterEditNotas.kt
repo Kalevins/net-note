@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import base.BaseViewHolder
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.documents_row.view.*
 import kotlinx.android.synthetic.main.notas_row.view.*
+import models.Document
 
 class RecyAdapterEditNotas (private val context: Context,
                             val contentDocument:MutableList<String>

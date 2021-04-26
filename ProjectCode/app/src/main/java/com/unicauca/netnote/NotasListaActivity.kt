@@ -26,18 +26,6 @@ class NotasListaActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        /*
-        val listDocuments = listOf( Document("Teoria Electromagnetica", 2, true, true, true, "Contenido de Teoria Electromag" ),
-                Document("Aplicaciones Móviles", 2,true, true, true, "Contenido de Apli moviles" ),
-                Document("Medios de transmisión", 8, true, true, true, "Contenido de medios de transmision" ))
-        Log.d("Info","*******************Esta creando el listDocument")
-        recyclerView.adapter = RecyclerAdapter(this, listDocuments, this)*/
 
     }
-    /*
-    override fun onItemClick(title: String) {
-        val intent = Intent(this, EditarNotasActivity::class.java)
-        intent.putExtra("Titulo", title)
-        startActivity(intent)
-    }*/
 }

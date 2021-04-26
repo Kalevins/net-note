@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -97,11 +96,9 @@ class EditarFragment : Fragment() {
             ".jpg",
             storageDir
         )
-
         currentPhotoPath = image.absolutePath //Directorio final
         return image
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -122,7 +119,6 @@ class EditarFragment : Fragment() {
                 uploadImageToFirebase(imageFileName, contentUri)
             }
         }
-
     }
 
     private fun uploadImageToFirebase(name: String, contentUri: Uri?) {

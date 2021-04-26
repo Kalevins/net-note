@@ -39,7 +39,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="389dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/edition_toolbar"
         app:layout_constraintTop_toBottomOf="@id/Titulo_notas"
         app:layout_constraintVertical_bias="0.0"
@@ -49,10 +49,12 @@
         android:id="@+id/edition_toolbar"
         android:name="com.unicauca.netnote.EditarFragment"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:label="@string/menu_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"
         tools:layout="@layout/fragment_editar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

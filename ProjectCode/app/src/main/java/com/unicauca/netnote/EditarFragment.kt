@@ -73,6 +73,8 @@ class EditarFragment : Fragment() {
         }
         text_buttom.setOnClickListener {
             Log.d("Info","-----------------SIN IMPLEMENTAR-----------------")
+            var text = Intent(activity, SINCREAR::class.java)
+            startActivity(text)
         }
     }
 

@@ -1,35 +1,30 @@
 package com.unicauca.netnote
 
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
+import android.view.Menu
+import android.widget.SearchView
 import android.widget.TextView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.nav_header_main.*
-import android.view.LayoutInflater
-import android.view.Menu
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.SearchView
-import com.google.firebase.database.ktx.database
-import kotlinx.android.synthetic.main.activity_principal.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import models.Document
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -69,7 +64,11 @@ class PrincipalActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration( //Menu de navegacion
             setOf(
-                R.id.nav_home, R.id.nav_share, R.id.nav_paper_bin, R.id.nav_logout, R.id.nav_creditos
+                R.id.nav_home,
+                R.id.nav_share,
+                R.id.nav_paper_bin,
+                R.id.nav_logout,
+                R.id.nav_creditos
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -80,6 +79,12 @@ class PrincipalActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser //Usuario actual
         updateUI(currentUser)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        finish()
+        startActivity(intent)
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
@@ -120,7 +125,7 @@ class PrincipalActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_bar,menu)
+        menuInflater.inflate(R.menu.top_bar, menu)
 
         val search = menu?.findItem(R.id.search)
         val searchView = search?.actionView as SearchView

@@ -1,14 +1,17 @@
 package com.unicauca.netnote
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -28,6 +31,7 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
     private var scansInDocument: Boolean = false
     private var textsInDocument: Boolean = false
     private var listOfDocuments: MutableList<Document> = mutableListOf<Document>()
+    private lateinit var recyclerView: RecyclerView
 
 
     override fun onCreateView(
@@ -35,20 +39,28 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val myview: View = inflater.inflate(R.layout.fragment_home, container, false)
+        recyclerView = myview.findViewById(R.id.recyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(myview.context)
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                myview.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
+        val userID = auth.currentUser?.uid //Obtiene ID usuario actual
+        val path = database.getReference("/users/$userID/")
+        addPostEventListener(path)//Obtencion valores de la base de datos (Realtime DataBase)
+        Log.d("Info", "*******************Esta creando el *******************")
+        recyclerView.adapter = RecyclerAdapter(myview.context, listOfDocuments, this)
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return myview
 
     }
 
-    private fun Intent(homeFragment: HomeFragment, java: Class<PrincipalActivity>) {
-
-
-
-    }
-
-
-    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+    /*override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
 
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -57,21 +69,16 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         val userID = auth.currentUser?.uid //Obtiene ID usuario actual
         val path = database.getReference("/users/$userID/")
         addPostEventListener(path)//Obtencion valores de la base de datos (Realtime DataBase)
-        /*
-        val listDocuments = listOf(
-            Document("Teoria Electromagnetica", 2, false, true, true, "Contenido de Teoria Electromag" ),
-            Document("Aplicaciones Móviles", 2,true, false, true, "Contenido de Apli moviles" ),
-            Document("Medios de transmisión", 8, true, true, false, "Contenido de medios de transmision" )
-        )*/
         Log.d("Info","*******************Esta creando el listDocument")
         recyclerView.adapter = RecyclerAdapter(itemView.context, listOfDocuments, this)
 
-    }
+    }*/
 
-    override fun onItemClick(title: String, contentDocument: MutableList<String>) {
+    override fun onItemClick(title: String, contentDocument: MutableList<String>, ID: String) {
         val intent = Intent(context, EditarNotasActivity::class.java)
         intent.putExtra("Titulo", title)
-        intent.putStringArrayListExtra("Contenido",ArrayList(contentDocument))
+        intent.putExtra("ID", ID)
+        intent.putStringArrayListExtra("Contenido", ArrayList(contentDocument))
         startActivity(intent)
     }
 
@@ -107,14 +114,14 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                     var mapContent = mutableMapOf<Long, String>()
                     var contentDocumentLinks : MutableList<String>
 
+                    for ((atributes, IDdocuments) in documentArrayAtributes zip documentID){
+                        contentDocument = mutableListOf<String>()
+                        idImages = mutableListOf<String>()
+                        mapContent = mutableMapOf()
 
-                    for (atributes in documentArrayAtributes){
-                        contentDocument = mutableListOf("")
-
-
+                        //contentDocumentLinks = mutableListOf<String>()
 
                         mapAtributes = atributes as Map<String, Any>
-
 
                         atributesKey = mapAtributes.keys
 
@@ -127,12 +134,11 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             arrayLinksImages = dictionaryImages.values
                             arrayKeyImages = dictionaryImages.keys
 
-                            for ((id,link) in arrayKeyImages zip arrayLinksImages){
+                            for ((id, link) in arrayKeyImages zip arrayLinksImages){
 
-                                idImages.add(id.replace("_","")+link)
+                                idImages.add(id.replace("_", "") + link)
 
                             }
-
 
                             contentDocument.addAll(idImages)
 
@@ -151,10 +157,10 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             arrayLinksTexts = dictionaryTexts.values
                             arrayKeyTexts = dictionaryTexts.keys
 
-                            for ((id,link) in arrayKeyTexts zip arrayLinksTexts){
+                            for ((id, link) in arrayKeyTexts zip arrayLinksTexts){
 
 
-                                idTexts.add(id.replace("_","")+link)
+                                idTexts.add(id.replace("_", "") + link)
 
                             }
 
@@ -178,9 +184,9 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             arrayLinksAudios = dictionaryAudios.values
                             arrayKeyAudios = dictionaryAudios.keys
 
-                            for ((id,link) in arrayKeyAudios zip arrayLinksAudios){
+                            for ((id, link) in arrayKeyAudios zip arrayLinksAudios){
 
-                                idAudios.add(id.replace("_","")+link)
+                                idAudios.add(id.replace("_", "") + link)
 
                             }
 
@@ -200,7 +206,7 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                             if (content != "") {
                                 timeStamp = content.substring(4, 18)
                                 Log.d("INFO CD", "$timeStamp")
-                                linksContent = content.substring(0,4)+content.substring(18)
+                                linksContent = content.substring(0, 4)+content.substring(18)
                                 Log.d("INFO LC", "$linksContent")
 
                                 mapContent[timeStamp.toLong()] = linksContent
@@ -210,15 +216,20 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                         }
 
                         mapContent = mapContent.toSortedMap()
-
                         contentDocumentLinks = mapContent.values.toMutableList()
-
-
                         titleDocument = mapAtributes["title"].toString()
 
-                        listOfDocuments.add(Document(titleDocument,3,audioInDocument,scansInDocument,textsInDocument,contentDocumentLinks))
-
-
+                        listOfDocuments.add(
+                            Document(
+                                IDdocuments,
+                                titleDocument,
+                                3,
+                                audioInDocument,
+                                scansInDocument,
+                                textsInDocument,
+                                contentDocumentLinks
+                            )
+                        )
 
                     }
 

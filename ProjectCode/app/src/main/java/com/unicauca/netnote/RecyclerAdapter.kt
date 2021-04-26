@@ -14,7 +14,7 @@ class RecyclerAdapter ( private val context: Context,
                         val listDocuments:MutableList<Document>,
                         private val itemClickListener:onDocumentClickListener):RecyclerView.Adapter<BaseViewHolder<*>>(){
     interface onDocumentClickListener{
-        fun onItemClick(title: String, contentDocument: MutableList<String>)
+        fun onItemClick(title: String, contentDocument: MutableList<String>, ID: String)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
        return DocumentsViewHolder(LayoutInflater.from(context).inflate(R.layout.documents_row, parent,false))
@@ -38,7 +38,7 @@ class RecyclerAdapter ( private val context: Context,
         override fun bind(item: Document, position: Int) {
 
             itemView.setOnClickListener{
-                itemClickListener.onItemClick(item.title, item.content)
+                itemClickListener.onItemClick(item.title, item.content, item.ID)
             }
 
             val scanImage: String = if(item.scans) {

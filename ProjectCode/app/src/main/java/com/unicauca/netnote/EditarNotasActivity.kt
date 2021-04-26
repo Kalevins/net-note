@@ -1,5 +1,6 @@
 package com.unicauca.netnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -21,7 +22,7 @@ import models.Document
 class EditarNotasActivity : AppCompatActivity() {
 
     //Botones
-    private lateinit var textView: TextView
+    //private lateinit var textView: TextView
     private lateinit var documentID: String
     private var auth: FirebaseAuth = FirebaseAuth.getInstance() //Aunteticacion
     private var database: FirebaseDatabase = Firebase.database //Base de datos (Realtime Database)
@@ -34,8 +35,6 @@ class EditarNotasActivity : AppCompatActivity() {
         val contentDocument = intent.getStringArrayListExtra("Contenido")
         val mutableContentDocument = contentDocument?.toMutableList<String>()
 
-
-        //AQUI HACER EL RECYCLER VIEW
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.adapter = mutableContentDocument?.let { RecyAdapterEditNotas(this, it) }
@@ -46,15 +45,7 @@ class EditarNotasActivity : AppCompatActivity() {
             addTitle(it)
         }
 
-        //Asignacion
-        //textView = findViewById(R.id.Contenido_notas)
-
-        val userID = auth.currentUser?.uid //Obtiene ID usuario actual
         documentID = obtenerDocumentID() //Obtiene ID documento actual
-        val path = database.getReference("/users/$userID/$documentID/") //Direccion documento actual
-
-        addPostEventListener(path) //Obtencion valores de la base de datos (Realtime DataBase)
-
     }
 
     override fun onDestroy() {
@@ -68,27 +59,6 @@ class EditarNotasActivity : AppCompatActivity() {
         }
     }
 
-    private fun addPostEventListener(postReference: DatabaseReference) {
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
-                if (dataSnapshot.getValue()!=null) {
-                    val map: Map<String, Any> = dataSnapshot.getValue() as Map<String, Any>
-                    val namesImages = map.keys // Vector con los nombres de las imagenes
-                    val urlImages = map.values // Vector con las URL de las imagenes
-                    Log.d("Info", "$namesImages")
-                    textView.text = urlImages.toString()
-                }
-                // ...
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                //Log.w("Error", "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        postReference.addValueEventListener(postListener)
-    }
 
     private fun addTitle(view: View){
 
@@ -106,6 +76,11 @@ class EditarNotasActivity : AppCompatActivity() {
 
     fun obtenerDocumentID(): String {
         val extras: Bundle? = intent.extras
-        return extras!!.getString("documentID").toString() //Carga el documentID de la actividad PrincipalActivity
+        //Carga el documentID de la actividad PrincipalActivity
+        var idDocument = extras!!.getString("documentID").toString()
+        if (idDocument == "null") {
+            idDocument = intent.getStringExtra("ID").toString()
+        }
+        return idDocument
     }
 }

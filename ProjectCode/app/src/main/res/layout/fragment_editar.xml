@@ -24,7 +24,7 @@
         android:layout_height="70dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/mic_image"
+        app:layout_constraintEnd_toStartOf="@id/paper_image"
         app:layout_constraintStart_toEndOf="@id/text_image"
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
         android:contentDescription="TODO" />
 
     <ImageButton
-        android:id="@+id/mic_image"
+        android:id="@+id/paper_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="#FFFFFF"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toStartOf="@id/gallery_image"
         app:layout_constraintStart_toEndOf="@id/cam_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_mic_24" />
+        app:srcCompat="@drawable/papelera" />
 
     <ImageButton
         android:id="@+id/gallery_image"
@@ -49,7 +49,7 @@
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mic_image"
+        app:layout_constraintStart_toEndOf="@id/paper_image"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_image_24"
         android:contentDescription="TODO" />
@@ -75,14 +75,14 @@
         app:layout_constraintBottom_toBottomOf="@id/cam_image"/>
 
     <TextView
-        android:id="@+id/mic_text"
+        android:id="@+id/paper_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Audio"
-        app:layout_constraintEnd_toEndOf="@id/mic_image"
-        app:layout_constraintStart_toStartOf="@id/mic_image"
+        android:text="Borrar"
+        app:layout_constraintEnd_toEndOf="@id/paper_image"
+        app:layout_constraintStart_toStartOf="@id/paper_image"
         tools:layout_editor_absoluteY="78dp"
-        app:layout_constraintBottom_toBottomOf="@id/mic_image"/>
+        app:layout_constraintBottom_toBottomOf="@id/paper_image"/>
 
     <TextView
         android:id="@+id/gallery_text"

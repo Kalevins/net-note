@@ -33,7 +33,7 @@ class EditarFragment : Fragment() {
     //Botones
     private lateinit var cam_buttom: ImageButton
     private lateinit var gallery_buttom: ImageButton
-    private lateinit var mic_buttom: ImageButton
+    private lateinit var paper_buttom: ImageButton
     private lateinit var text_buttom: ImageButton
     private lateinit var currentPhotoPath: String //Direccion de la foto
     private lateinit var storageReference: StorageReference //Base de datos (Storage)
@@ -63,7 +63,7 @@ class EditarFragment : Fragment() {
         //Asignacion de botones
         cam_buttom = view.findViewById(R.id.cam_image)
         gallery_buttom = view.findViewById(R.id.gallery_image)
-        mic_buttom = view.findViewById(R.id.mic_image)
+        paper_buttom = view.findViewById(R.id.paper_image)
         text_buttom = view.findViewById(R.id.text_image)
 
         //Base de datos (Storage)
@@ -77,7 +77,7 @@ class EditarFragment : Fragment() {
         cam_buttom.setOnClickListener {
             takePicture()
         }
-        text_buttom.setOnClickListener {
+        /*text_buttom.setOnClickListener {
             Log.d("Info","-----------------SIN IMPLEMENTAR-----------------")
             contenido = actividad.obtenerContent()
             titulo = actividad.obtenerTitulo()
@@ -88,7 +88,7 @@ class EditarFragment : Fragment() {
             text.putExtra("Titulo",titulo)
             text.putExtra("IDdocument",documentID)
             startActivity(text)
-        }
+        }*/
     }
 
     private fun takePicture() {

@@ -66,7 +66,7 @@ class EditarNotasActivity : AppCompatActivity() {
         }
 
 
-
+        Log.d("mutable condoc", "$mutableContentDocument")
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.adapter = mutableContentDocument?.let { RecyAdapterEditNotas(this, it) }

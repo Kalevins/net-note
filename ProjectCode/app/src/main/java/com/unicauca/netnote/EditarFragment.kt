@@ -77,7 +77,7 @@ class EditarFragment : Fragment() {
         cam_buttom.setOnClickListener {
             takePicture()
         }
-        /*text_buttom.setOnClickListener {
+        text_buttom.setOnClickListener {
             Log.d("Info","-----------------SIN IMPLEMENTAR-----------------")
             contenido = actividad.obtenerContent()
             titulo = actividad.obtenerTitulo()
@@ -88,7 +88,7 @@ class EditarFragment : Fragment() {
             text.putExtra("Titulo",titulo)
             text.putExtra("IDdocument",documentID)
             startActivity(text)
-        }*/
+        }
     }
 
     private fun takePicture() {

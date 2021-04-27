@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
@@ -44,6 +45,10 @@ class EditarNotasActivity : AppCompatActivity() {
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
         }
+        findViewById<ImageButton>(R.id.paper_image).setOnClickListener{
+            deleteDocument(it)
+            startActivity(Intent(this, PrincipalActivity::class.java))
+        }
 
         documentID = obtenerDocumentID() //Obtiene ID documento actual
     }
@@ -72,6 +77,12 @@ class EditarNotasActivity : AppCompatActivity() {
         database.getReference("/users/$userID/$documentID/title/").setValue(titulo)
 
         Log.d("INFO",titulo)
+    }
+    private fun deleteDocument(view: View){
+        val userID = auth.currentUser?.uid
+        database.getReference("/users/$userID/$documentID/").setValue(null)
+
+        Log.d("INFO","$documentID")
     }
 
     fun obtenerDocumentID(): String {

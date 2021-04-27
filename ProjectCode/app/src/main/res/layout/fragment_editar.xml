@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     <ImageButton
-        android:id="@+id/mic_image"
+        android:id="@+id/cam_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="#FFFFFF"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toEndOf="@id/text_image"
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_mic_24"
+        app:srcCompat="@drawable/ic_baseline_photo_camera_24"
         android:contentDescription="TODO" />
 
     <ImageButton

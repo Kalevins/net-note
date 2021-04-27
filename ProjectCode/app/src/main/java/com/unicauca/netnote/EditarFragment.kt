@@ -26,6 +26,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EditarFragment : Fragment() {
 
@@ -38,6 +39,9 @@ class EditarFragment : Fragment() {
     private lateinit var storageReference: StorageReference //Base de datos (Storage)
     private lateinit var auth: FirebaseAuth //Autentificación
     private lateinit var documentID: String //Identificador del documento (Nota) actual
+    private lateinit var contenido: ArrayList<String>
+    private lateinit var titulo: String
+    private lateinit var actividad: EditarNotasActivity
 
     val CAMERA_REQUEST_CODE = 102 //Identificador para la camara
     val GALLERY_REQUEST_CODE = 105 //Identificador para la galeria
@@ -47,8 +51,10 @@ class EditarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val actividad: EditarNotasActivity = activity as EditarNotasActivity //Carga la actividad para poder obtener los valores de esta
+        actividad = activity as EditarNotasActivity //Carga la actividad para poder obtener los valores de esta
         documentID = actividad.obtenerDocumentID() //Carga y asigna el "documentID"
+
+
         val vi: View = inflater.inflate(R.layout.fragment_editar, container, false) //Asigna el layout
         return vi
     }
@@ -73,7 +79,14 @@ class EditarFragment : Fragment() {
         }
         text_buttom.setOnClickListener {
             Log.d("Info","-----------------SIN IMPLEMENTAR-----------------")
-            var text = Intent(activity, SINCREAR::class.java)
+            contenido = actividad.obtenerContent()
+            titulo = actividad.obtenerTitulo()
+            documentID = actividad.obtenerDocuID()
+            Log.d("contenido activi", "$contenido")
+            var text = Intent(activity, Add_text_to_notes::class.java)
+            text.putStringArrayListExtra("contentdocument", contenido)
+            text.putExtra("Titulo",titulo)
+            text.putExtra("IDdocument",documentID)
             startActivity(text)
         }
     }
@@ -134,6 +147,7 @@ class EditarFragment : Fragment() {
         //Autenticacion
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
+        documentID = actividad.obtenerDocuID()
 
         val imageName = name.substring(0,20) //Elimina el formato (.jpg)
         val ref = database.getReference("/users/$userID/$documentID/images/$imageName/") //Direccion base de datos (Realtime Database)

@@ -44,6 +44,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Add_text_to_notes"
+            android:theme="@style/Theme.NetNote.NoActionBar"/>
+
+
         <provider
             android:authorities="com.unicauca.android.fileprovider"
             android:name="androidx.core.content.FileProvider"

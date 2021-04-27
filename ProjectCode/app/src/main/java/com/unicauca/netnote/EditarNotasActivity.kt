@@ -1,5 +1,6 @@
 package com.unicauca.netnote
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_editar_notas.*
 import kotlinx.android.synthetic.main.activity_editar_notas.recyclerView
+import kotlinx.android.synthetic.main.fragment_editar.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import models.Document
 
@@ -26,14 +28,43 @@ class EditarNotasActivity : AppCompatActivity() {
     private lateinit var documentID: String
     private var auth: FirebaseAuth = FirebaseAuth.getInstance() //Aunteticacion
     private var database: FirebaseDatabase = Firebase.database //Base de datos (Realtime Database)
+    private var globalmutablecontentdocument = arrayListOf<String>()
+    private var titulo: String=""
+    private var globalDocID=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_notas) //Asigna el layout
 
-        val titleDocument = intent.getStringExtra("Titulo")
-        val contentDocument = intent.getStringArrayListExtra("Contenido")
-        val mutableContentDocument = contentDocument?.toMutableList<String>()
+        var titleDocument = intent.getStringExtra("Titulo") // Obtengo el titulo del documento desde el Homefragment onItemClick
+        val contentDocument = intent.getStringArrayListExtra("Contenido") // Obtengo el contenido del documento desde el Homefragment onItemClick
+        var mutableContentDocument = contentDocument?.toMutableList<String>() //convierto de Array a Mutable List de Strings
+        documentID = obtenerDocumentID() //Obtiene ID documento actual
+
+        if (contentDocument != null) {
+            globalmutablecontentdocument = contentDocument // Guardo el contenido del documento en una variable global para recuperarlo en el EditarFragment
+
+        }
+        if (titleDocument != null) {
+            titulo = titleDocument // Guardo el titulo del documento en una variable global para recuperarlo en el EditarFragment
+        }
+        if (documentID != null){
+            globalDocID = documentID
+        }
+        var bandera = intent.getBooleanExtra("BanderaAddText",false) //obtengo la bandera de que entro al boton de editar texto
+        if(bandera){
+            val texto = intent.getStringExtra("Texto").toString() //obtengo el texto que se agrego en editar texto
+            titleDocument = intent.getStringExtra("Titulo") //traigo de vuelta el titulo del documento para no perderlo al cambiar de actividad
+            mutableContentDocument = intent.getStringArrayListExtra("returnContent")  //traigo de vuelta el contenido del documento para no perderlo al cambiar de actividad
+            mutableContentDocument?.add(texto)  //agrego el ultimo texto agregado al contenido
+            globalmutablecontentdocument = mutableContentDocument!! // Se actualiza la variable global para que no se pierda la info
+            globalDocID = intent.getStringExtra("DocumentoID").toString()
+            !bandera
+            Log.d("PRUEBA", "ENTRA AL IF: $mutableContentDocument")
+
+        }
+
+
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -43,9 +74,10 @@ class EditarNotasActivity : AppCompatActivity() {
       
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
+            startActivity(Intent(this, PrincipalActivity::class.java))
         }
 
-        documentID = obtenerDocumentID() //Obtiene ID documento actual
+
     }
 
     override fun onDestroy() {
@@ -64,14 +96,15 @@ class EditarNotasActivity : AppCompatActivity() {
 
         val editText = findViewById<EditText>(R.id.Titulo_notas)
         val titulo: String
-        val documento: Document
+
 
         titulo = editText.text.toString()
+        if(titulo != "") {
+            val userID = auth.currentUser?.uid
+            database.getReference("/users/$userID/$documentID/title/").setValue(titulo)
 
-        val userID = auth.currentUser?.uid
-        database.getReference("/users/$userID/$documentID/title/").setValue(titulo)
-
-        Log.d("INFO",titulo)
+            Log.d("INFO", titulo)
+        }
     }
 
     fun obtenerDocumentID(): String {
@@ -82,5 +115,15 @@ class EditarNotasActivity : AppCompatActivity() {
             idDocument = intent.getStringExtra("ID").toString()
         }
         return idDocument
+    }
+
+    fun obtenerContent(): ArrayList<String>{
+        return globalmutablecontentdocument
+    }
+    fun obtenerTitulo(): String{
+        return titulo
+    }
+    fun obtenerDocuID(): String{
+        return globalDocID
     }
 }

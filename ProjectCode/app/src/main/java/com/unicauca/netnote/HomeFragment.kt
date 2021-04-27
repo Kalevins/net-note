@@ -53,7 +53,6 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         val userID = auth.currentUser?.uid //Obtiene ID usuario actual
         val path = database.getReference("/users/$userID/")
         addPostEventListener(path)//Obtencion valores de la base de datos (Realtime DataBase)
-        Log.d("Info", "*******************Esta creando el *******************")
         recyclerView.adapter = RecyclerAdapter(myview.context, listOfDocuments, this)
 
         return myview
@@ -117,6 +116,8 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                     for ((atributes, IDdocuments) in documentArrayAtributes zip documentID){
                         contentDocument = mutableListOf<String>()
                         idImages = mutableListOf<String>()
+                        idTexts = mutableListOf<String>()
+                        idAudios = mutableListOf<String>()
                         mapContent = mutableMapOf()
 
                         //contentDocumentLinks = mutableListOf<String>()
@@ -129,7 +130,7 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
 
                             scansInDocument =  true
                             dictionaryImages = mapAtributes["images"] as Map<String, String>
-                            Log.d("INFO IMAGES", "$dictionaryImages")
+
 
                             arrayLinksImages = dictionaryImages.values
                             arrayKeyImages = dictionaryImages.keys
@@ -200,14 +201,12 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
 
                         }
 
-                        Log.d("INFO CD", "$contentDocument")
+
 
                         for (content in contentDocument){
                             if (content != "") {
                                 timeStamp = content.substring(4, 18)
-                                Log.d("INFO CD", "$timeStamp")
                                 linksContent = content.substring(0, 4)+content.substring(18)
-                                Log.d("INFO LC", "$linksContent")
 
                                 mapContent[timeStamp.toLong()] = linksContent
                             }
@@ -232,10 +231,9 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
                         )
 
                     }
+                    Log.d("Lista de Doc","$listOfDocuments")
 
-                    Log.d("Info HOMEFRAGMENT", "$documentID")
-                    Log.d("Info HOMEFRAGMENT 2", "$documentAtributes")
-                    Log.d("Info HOMEFRAGMENT 3", "$documentArrayLength")
+
 
                     globalKeyNameIm = documentID
                     globalKeyURLIm = documentAtributes

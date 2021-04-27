@@ -132,6 +132,7 @@ class PrincipalActivity : AppCompatActivity() {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
+
                 return false
             }
         })

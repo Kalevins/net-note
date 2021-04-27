@@ -1,9 +1,11 @@
 package com.unicauca.netnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
@@ -21,7 +23,6 @@ import models.Document
 class EditarNotasActivity : AppCompatActivity() {
 
     //Botones
-    private lateinit var textView: TextView
     private lateinit var documentID: String
     private var auth: FirebaseAuth = FirebaseAuth.getInstance() //Aunteticacion
     private var database: FirebaseDatabase = Firebase.database //Base de datos (Realtime Database)
@@ -44,6 +45,12 @@ class EditarNotasActivity : AppCompatActivity() {
       
         findViewById<ActionMenuItemView>(R.id.save).setOnClickListener{
             addTitle(it)
+            startActivity(Intent(this, PrincipalActivity::class.java)) //Direge a la pantalla de notas
+
+        }
+        findViewById<ImageButton>(R.id.mic_image).setOnClickListener{
+            deleteDocument(it)
+
         }
 
         //Asignacion
@@ -77,7 +84,7 @@ class EditarNotasActivity : AppCompatActivity() {
                     val namesImages = map.keys // Vector con los nombres de las imagenes
                     val urlImages = map.values // Vector con las URL de las imagenes
                     Log.d("Info", "$namesImages")
-                    textView.text = urlImages.toString()
+                    //textView.text = urlImages.toString()
                 }
                 // ...
             }
@@ -103,6 +110,16 @@ class EditarNotasActivity : AppCompatActivity() {
 
         Log.d("INFO",titulo)
     }
+    private fun deleteDocument(view: View){
+        val userID = auth.currentUser?.uid
+        database.getReference("/users/$userID/$documentID/").setValue(null)
+
+        Log.d("INFO","$documentID")
+    }
+
+
+
+
 
     fun obtenerDocumentID(): String {
         val extras: Bundle? = intent.extras

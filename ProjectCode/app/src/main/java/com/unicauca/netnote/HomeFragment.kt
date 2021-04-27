@@ -37,15 +37,13 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         // Inflate the layout for this fragment
 
 
+
         return inflater.inflate(R.layout.fragment_home, container, false)
 
-    }
-
-    private fun Intent(homeFragment: HomeFragment, java: Class<PrincipalActivity>) {
-
 
 
     }
+
 
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
@@ -241,4 +239,5 @@ class HomeFragment : Fragment() , RecyclerAdapter.onDocumentClickListener{
         }
         postReference.addValueEventListener(postListener)
     }
+
 }

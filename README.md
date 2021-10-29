@@ -1,5 +1,5 @@
 # NetNote
-_Proyecto movil para la realizacion de notas con fotos_
+_Proyecto móvil para la realización de notas con fotos._
 
 ## 📋 Pre-requisitos
 
